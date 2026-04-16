@@ -1,0 +1,79 @@
+:root {
+    --ripple-color: rgba(77, 163, 255, 0.25);
+    --ripple-expand-duration: 0.6s;
+    --header-blur-scrolled: 20px;
+}
+
+@supports (view-transition-name: none) {
+    ::view-transition-old(root) {
+        animation: page-exit-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    ::view-transition-new(root) {
+        animation: page-enter-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+}
+
+@keyframes page-exit-left {
+    to {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.97);
+    }
+}
+
+@keyframes page-enter-right {
+    from {
+        opacity: 0;
+        transform: translateX(40px) scale(0.97);
+    }
+}
+
+body.header-scrolled header {
+    backdrop-filter: blur(12px);
+    background: rgba(8, 17, 31, 0.86) !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+.reveal-pending {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.ripple-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-wave {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--ripple-color);
+    transform: scale(0);
+    animation: ripple-expand var(--ripple-expand-duration) ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes ripple-expand {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.stagger-child {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.stagger-child.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}

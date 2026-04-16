@@ -1,0 +1,221 @@
+/* ============================================
+   E:\ydao CSS Variables & Container System
+   统一页面宽度适配
+   ============================================ */
+
+:root {
+    /* Colors */
+    --primary: #08111f;
+    --secondary: #0d1a30;
+    --accent: #4da3ff;
+    --bg: #07101d;
+    --bg-elevated: #0f1c33;
+    --text-primary: #f5fbff;
+    --text-secondary: #97abc8;
+    --card-bg: rgba(12, 24, 43, 0.58);
+    --card-bg-hover: rgba(16, 31, 55, 0.78);
+    --border: rgba(128, 192, 255, 0.12);
+    --border-strong: rgba(148, 208, 255, 0.24);
+    --accent-hover: #7ec2ff;
+    --glass-highlight: rgba(255, 255, 255, 0.08);
+
+    /* Container Widths */
+    --width-max: 1200px;
+    --width-narrow: 800px;
+    --width-narrower: 600px;
+
+    /* Spacing */
+    --padding-x: 24px;
+    --section-padding: 80px;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background:
+        radial-gradient(circle at 18% 12%, rgba(77, 163, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(86, 223, 255, 0.12), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(58, 120, 255, 0.14), transparent 28%),
+        linear-gradient(180deg, #06101d 0%, #08111f 38%, #09162b 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-width: 320px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 22%, rgba(255,255,255,0.05), transparent 18%),
+        radial-gradient(circle at 76% 30%, rgba(116, 212, 255, 0.05), transparent 16%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 16%, transparent 84%, rgba(255,255,255,0.018));
+    z-index: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease, transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+::selection {
+    background: rgba(77, 163, 255, 0.24);
+    color: #fff;
+}
+
+/* ============================================
+   Container System - 统一宽度适配
+   ============================================ */
+.container {
+    max-width: var(--width-max);
+    margin: 0 auto;
+    padding: 0 var(--padding-x);
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.container-narrow {
+    max-width: var(--width-narrow);
+    margin: 0 auto;
+    padding: 0 var(--padding-x);
+    width: 100%;
+}
+
+.container-narrower {
+    max-width: var(--width-narrower);
+    margin: 0 auto;
+    padding: 0 var(--padding-x);
+    width: 100%;
+}
+
+/* ============================================
+   Button System
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #72bbff 100%);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #3f8dff 0%, var(--accent-hover) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(77, 163, 255, 0.34);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(77, 163, 255, 0.1);
+    border-color: rgba(77, 163, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   Section System - 统一间距
+   ============================================ */
+section {
+    padding: var(--section-padding) var(--padding-x);
+    position: relative;
+    background: transparent !important;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.004));
+    pointer-events: none;
+    opacity: 0.55;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.section-header h3 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.8px;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --width-max: 100%;
+        --section-padding: 60px;
+    }
+
+    section {
+        padding: 60px var(--padding-x);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --padding-x: 16px;
+        --section-padding: 48px;
+    }
+
+    section {
+        padding: 48px var(--padding-x);
+    }
+
+    .section-header h3 {
+        font-size: 26px;
+    }
+
+    .section-header {
+        margin-bottom: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --padding-x: 12px;
+        --section-padding: 36px;
+    }
+
+    section {
+        padding: 36px var(--padding-x);
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
